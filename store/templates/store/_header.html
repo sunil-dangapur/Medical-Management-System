@@ -1,0 +1,74 @@
+{% load static %}
+<header class="home__header">
+    <!-- <nav class="navbar-expand-sm top__nav">
+        <div class="container">
+            <div class="top__nav__flex">
+                <div class="tel">
+                    <i class="fa fa-mobile" aria-hidden="true"></i>
+                    <p class="tel__num">
+                        +2348137281916
+                    </p>
+                </div>
+
+                <ul class="socials navbar-nav">
+                    <li class="social nav-item">
+                        <a href="" class="nav-link">
+                           <i class="fa fa-facebook-official" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="social nav-item">
+                        <a href="" class="nav-link">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="social nav-item">
+                        <a href="" class="nav-link">
+                            <i class="fa fa-github" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav> -->
+
+    <nav class="navbar-expand-sm main__nav">
+        <div class="container-fluid">
+            <div class="main__nav__body">
+                <div class="main__nav__flex">
+                    <!-- Logo -->
+                    <a href="{% url "store:home" %}" class="navbar-brand">
+                        <img src="{% static 'images/logo.png' %}" alt="" class="img-responsive">
+                        <span class="logo__name">
+                            KSITM Med. Store
+                        </span>
+                    </a>
+                    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+                        aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    
+                    <div class="collapse navbar-collapse" id="collapsibleNavId">
+    
+                        <!-- Main Login/Register -->
+                        <ul class="accounts navbar-nav">
+                            
+                            {% if user.is_authenticated %}
+                            <li class="accounts navbar-nav">
+                                <a href="{% url 'store:logout' %}" class="nav-link">
+                                    Logout <i class="fa fa-power-off" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            {% else %}
+                            <a href="{% url 'store:register' %}" class="nav-link">
+                                Register <i class="fa fa-user" aria-hidden="true"></i>
+                            </a>
+                            {% endif %}
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+</header>

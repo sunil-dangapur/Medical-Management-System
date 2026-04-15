@@ -1,0 +1,154 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}
+MedicalStore :: Customer Dashboard
+{% endblock title %}
+
+{% block content %}
+  <style>
+    div.dashboard{
+      margin-top: 50px;
+    }
+
+    div.dash_card{
+      border-radius: 20px;
+      margin-bottom: 50px;
+    }
+
+    div.dash_card:last-child{
+      margin-bottom: 100px;
+    }
+
+    div.head{
+      padding: 20px;
+    }
+
+    p.h3{
+      color: #000;
+      font-weight: 600;
+      margin-left: 10px;
+    }
+
+    div.head svg{
+      font-size: 28px;
+      color: #000;
+    }
+
+    div.messages{
+      margin: auto;
+      width: 100%;
+    }
+
+    p.alert {
+      font-weight: 600;
+    }
+
+    @media screen and (max-width: 785px){
+        div.messages{
+          width: 80% !important;
+        }
+    }
+  </style>
+
+  <section id="dashboard_section" class="dashboard_section">
+        
+        <!-- Dashboard Sidebar -->
+        {% include "store/_dashboard-customer.html" %}
+
+        <div class="container-fluid">
+            <div class="dashboard">
+
+              {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                    <p{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                        {{ message }}
+                    </p>
+                    {% endfor %}
+                </div>
+              {% endif %}
+
+              <div class="row">
+                  <div class="col-md-6">
+                  <div class="card dash_card">
+                    <div class="head d-flex">
+                      <i class="fas fa-pills"></i>
+
+                      <p class="pl-5 h3">
+                        Medicines
+                      </p>
+                    </div>
+                    <div class="footer card-footer d-flex justify-content-between bg-black">
+                      <a href="{% url "store:view-medicines" %}" class="nav-link pr-5">
+                        View
+
+                        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-md-6">
+                  <div class="card dash_card">
+                    <div class="head d-flex">
+                      <i class="fa fa-cart-plus" aria-hidden="true"></i>
+
+                      <p class="pl-5 h3">
+                        Orders
+                      </p>
+                    </div>
+                    <div class="footer card-footer d-flex justify-content-between bg-black">
+                      <a href="{% url "store:view-dealers" %}" class="nav-link pr-5">
+                        View
+
+                        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="card dash_card">
+                    <div class="head d-flex">
+                      <i class="fas fa-money-bill"></i>
+
+                      <p class="pl-5 h3">
+                        Purchases
+                      </p>
+                    </div>
+                    <div class="footer card-footer d-flex justify-content-between bg-black">
+                      <a href="{% url "store:view-purchases" %}" class="nav-link pr-5">
+                        View
+
+                        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="card dash_card">
+                    <div class="head d-flex">
+                      <i class="fa fa-user" aria-hidden="true"></i>
+
+                      <p class="pl-5 h3">
+                        Profile
+                      </p>
+                    </div>
+                    <div class="footer card-footer d-flex justify-content-between bg-black">
+                      <a href="{% url "store:settings" %}" class="nav-link pr-5">
+                        View
+
+                        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+        </div>
+  </section>
+{% endblock content %}

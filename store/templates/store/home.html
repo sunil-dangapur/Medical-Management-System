@@ -1,0 +1,100 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}
+MedicalStore :: Home
+{% endblock title %}
+
+{% block content %}
+<style>
+    div.dash_card{
+        border-radius: 20px;
+        margin-bottom: 50px;
+    }
+
+    div.dash_card:last-child{
+        margin-bottom: 100px;
+    }
+
+    div.head{
+        padding: 20px;
+    }
+
+    p.h3{
+        color: #000;
+        font-weight: 600;
+        margin-left: 10px;
+    }
+
+    div.head svg{
+        font-size: 28px;
+        color: #000;
+    }
+
+    div.messages{
+        margin: auto;
+        width: 100%;
+    }
+
+    p.alert {
+        font-weight: 600;
+    }
+
+    @media screen and (max-width: 785px){
+        div.messages{
+            width: 80% !important;
+        }
+    }
+</style>
+<section class="home__section">
+    {% include "store/_header.html" %}
+
+    <main class="section__main">
+        <div class="container">
+            <div class="section">
+
+                {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                    <p{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                        {{ message }}
+                    </p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <div class="row">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="section__image">
+                            <img src="{% static 'images/medicine.png' %}" alt="" class="img-responsive">
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8">
+                        <div class="section__desc">
+                            <p class="h2">
+                                Welcome to <br>
+                                <span class="p2__child">
+                                    KSITM Medical Store.
+                                </span>
+                            </p>
+                            
+                            <p class="h4">
+                                A Medical Store Management System developed to help ease and manage
+                                how drugs are recorded.
+                            </p>
+
+                            {% if not user.is_authenticated %}
+                            <a href="{% url 'store:login' %}" class="btn bg__black">
+                                Sign In <i class="fa ml-4 fa-television" aria-hidden="true"></i>
+                            </a>
+                            {% endif %}
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</section>
+{% endblock content %}

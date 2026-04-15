@@ -1,0 +1,78 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}
+MedicalStore :: Login
+{% endblock title %}
+
+{% block content %}
+    <style>
+        section.login__body{
+            padding-bottom: 100px !important;
+        }
+    </style>
+    <section class="login__section">
+        {% include "store/_header.html" %}
+
+        <section class="login__body">
+            <div class="container">
+                <div class="login_card card">
+                    <p class="h3">
+                        Login As An Admin
+                    </p>
+                    <div class="login_form">
+                        <form class="row g-3 login_form" method="POST">
+                        {% csrf_token %}
+
+                        <!-- <div class="col-md-12">
+                            <p class="alert alert-danger">
+                                {{ form.error_messages }}
+                            </p>
+                        </div> -->
+                
+                            <div class="col-md-12">
+                                <label for="validationCustomUsername" class="form-label">
+                                    Username:
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                    {{ form.username }}
+                                    <div class="invalid-feedback">
+                                        Please choose a username.
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <div class="col-md-12">
+                                <label for="validationCustom03" class="form-label">
+                                    Password:
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="inputGroupPrepend">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </span>
+                                    {{ form.password }}
+                                    <div class="invalid-feedback">
+                                        Your password must be minimum of 8 characters.
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <div class="col-12">
+                                <div class="forgotten_password">
+                                    <p class="h6">
+                                        Don't have an account? <a href="{% url "store:register" %}">Register</a>
+                                    </p>
+                                </div>
+                                <div class="col-12 pb-3">
+                                    <button class="btn btn-block login-button" type="submit">Login</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </section>
+{% endblock content %}

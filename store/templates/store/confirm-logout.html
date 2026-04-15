@@ -1,0 +1,30 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}
+MedicalStore :: Confirm Logout
+{% endblock title %}
+
+{% block content %}
+    <section id="dashboard_section" class="dashboard_section">
+
+        <!-- Dashboard Sidebar -->
+        {% include "store/_dashboard-admin.html" %}
+
+        <div class="container-fluid">
+            <div class="confirm__logout m-auto">
+                <div class="card confirm__card">
+                    <p class="h2">
+                        Are you sure you want to logout?
+                    </p>
+
+                    <div class="confirm">
+                        <a href="{% url 'store:logout' %}" class="btn bg-danger">
+                            Yes!
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

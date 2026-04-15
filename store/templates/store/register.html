@@ -1,0 +1,65 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}
+MedicalStore :: Register
+{% endblock title %}
+
+{% block content %}
+<style>
+    section.login__section{
+        height: 100vh;
+    }
+
+    section.register_body{
+        margin-top:100px;
+    }
+
+    div.register_card{
+        padding-bottom: 50px;
+    }
+
+    div.register_card p.h3{
+        margin-bottom: 30px !important;
+    }
+
+    div.register_card div.d-flex{
+        justify-content: center;
+        margin-right: 10px !important;
+    }
+
+    div.d-flex a.link{
+        font-weight: 600 !important;
+        margin-right: 20px !important;
+    }
+</style>
+    <section class="login__section">
+        {% include "store/_header.html" %}
+
+        <section class="register_body">
+            <div class="container">
+                <div class="register_card card">
+                    <p class="h3">
+                        Register
+                    </p>
+                    
+                    <div class="d-flex">
+                        <a href="{% url "store:register-admin" %}" class="link btn btn-primary">
+                            <i class="fas fa-hospital"></i>
+                            As Admin
+                        </a>
+
+                        <a href="{% url "store:register-customer" %}" class="link btn btn-success">
+                            <i class="fas fa-people-carry    "></i>
+                            As Customer
+                        </a>
+                    </div>
+                </div>
+            </div>
+            </main>
+
+        </section>
+
+        <script src="assets/js/mdb.min.js"></script>
+        <script src=""></script>
+{% endblock content %}

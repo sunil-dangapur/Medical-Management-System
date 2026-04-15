@@ -1,0 +1,187 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}
+MedicalStore :: Settings
+{% endblock title %}
+
+{% block content %}
+<style>
+div.settings_profile{
+    margin-top: 30px;
+}
+
+div.settings_profile_head{
+    text-align: center;
+    color: #000;
+}
+
+div.settings_profile_head p.h3{
+    font-weight: 550;
+    margin-bottom: 0% !important;
+    padding-bottom: 10px !important;
+}
+
+div.settings_profile_head p.h5{
+    margin-bottom: 30px;
+}
+
+div.settings_body{
+    padding-bottom: 50px;
+}
+
+div.profile_body_card{
+    border-radius: 20px;
+    background-color: #f7fafc;
+}
+
+div.profile_form_body{
+    width: 100%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+div.profile_form_body label.form-label{
+    color: #000 !important;
+}
+
+div.profile_form_body input.form-control{
+    background-color: #f7fafc !important;
+    height: 38px;
+    border: 0.3px solid #000;
+}
+
+div.profile_form_body input.firstname_input{
+    height: 40px;
+    background-color: #f7fafc;
+}
+
+div.settings_profile_body div.card{
+    width: 600px;
+    margin: auto;
+    padding-top: 0% !important;
+    padding: 50px;
+    border: 1px solid #000;
+}
+
+@media screen and (max-width: 750px){
+    div.settings_profile_body div.card{
+        width: 100%;
+        padding: 20px;
+    }
+
+    
+    div.profile_form_body input.firstname_input,
+    div.profile_form_body input.lastname_input,
+    div.profile_form_body input.email_input,
+    div.profile_form_body input.phonenumber_input,
+    div.profile_form_body button.col-12{
+        width: 100% !important;
+        max-width: 100% !important;
+        color: #000 !important;
+    }
+}
+
+div.profile_update_button{
+    margin-top: 30px;
+}
+
+div.profile_update_button button:hover{
+    font-weight: 550;
+}
+</style>
+<section class="dashboard_section" id="dashboard_section">
+
+    <!-- Dashboard Sidebar -->
+    {% include "store/_dashboard-admin.html" %}
+
+    <div class="container-fluid">
+        <div class="settings">
+
+            <div class="settings_body">
+                <div class="settings_profile" id="settingsProfile">
+                    <div class="settings_profile_head">
+                        <p class="h3">
+                            Account / Profile
+                            <i class="fa fa-user-circle" aria-hidden="true"></i>
+                        </p>
+                        <p class="h5">
+                            Manage your profile
+                        </p>
+                    </div>
+
+                    <div class="settings_profile_body">
+                        <div class="profile_body_card card">
+                            <div class="profile_form_body">
+                                <form class="row g-3 animate__animated animate__bounceInRight" method="POST">
+                                    {% csrf_token %}
+                                    
+                                    <!-- First Name -->
+                                    <div class="col-md-6">
+                                      <label for="validationCustom01" class="form-label">First Name</label>
+                                      {{ u_form.first_name }}
+                                      <div class="valid-feedback">
+                                        Looks good!
+                                      </div>
+                                    </div>
+
+                                    <!-- Last Name -->
+                                    <div class="col-md-6">
+                                      <label for="validationCustom02" class="form-label">Last Name</label>
+                                      {{ u_form.last_name }}
+                                      <div class="valid-feedback">
+                                        Looks good!
+                                      </div>
+                                    </div>
+
+                                     <!-- User Name -->
+                                     <div class="col-md-6">
+                                        <label for="validationCustom01" class="form-label">User Name</label>
+                                        {{ u_form.username }}
+                                        <div class="valid-feedback">
+                                          Looks good!
+                                        </div>
+                                      </div>
+
+                                    <!-- Email -->
+                                    <div class="col-md-6">
+                                      <label for="validationCustom02" class="form-label">Email</label>
+                                      {{ u_form.email }}
+                                      <div class="valid-feedback">
+                                        Looks good!
+                                      </div>
+                                    </div>
+
+                                    <!-- Phone Number -->
+                                    <div class="col-md-12">
+                                      <label for="validationCustom02" class="form-label">Phone Number</label>
+                                      {{ p_form.phone_number }}
+                                      <div class="valid-feedback">
+                                        Looks good!
+                                      </div>
+                                    </div>
+
+                                    <!-- Profile Picture -->
+                                    <div class="col-md-12">
+                                        <label for="validationCustom07" class="form-label">Profile Picture</label>
+                                        <br>{{ p_form.profile_picture }}
+                                        <div class="valid-feedback">
+                                          Looks good!
+                                        </div>
+                                      </div>
+                                    
+                                    <!-- Profile Update Button -->
+                                    <div class="col-12 profile_update_button">
+                                      <button class="btn bg-black text-white btn-md col-12" type="submit">Update Profile</button>
+                                    </div>
+                                  </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

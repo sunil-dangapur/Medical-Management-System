@@ -1,0 +1,91 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}
+MedicalStore :: View Medicines
+{% endblock title %}
+
+{% block content %}
+<style>
+    div.messages{
+        margin: auto;
+        width: 60%;
+        margin-top: 30px;
+    }
+
+    p.alert {
+        font-weight: 550;
+    }
+
+    @media screen and (max-width: 785px){
+        div.messages{
+            width: 80% !important;
+        }
+    }
+</style>
+
+<section id="dashboard_section" class="dashboard_section">
+
+        <!-- Dashboard Sidebar -->
+        {% include "store/_dashboard-customer.html" %}
+
+        <div class="container-fluid">
+            <div class="add_dealer">
+
+                {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                    <p{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                        {{ message }}
+                    </p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <div class="dealers__card card">
+                    <p class="h2">
+                        View Medicines
+                    </p>
+
+                    <div class="dealers__table table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Med Code</th>
+                                    <th scope="col">Med Name</th>
+                                    <th scope="col">Dealer Name</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Stock</th>
+                                    <th scope="col">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for medicine in medicines %}
+                                <tr>
+                                    <th scope="row">{{ medicine.id }}</th>
+                                    <td>{{ medicine.med_code }}</td>
+                                    <td>{{ medicine.med_name }}</td>
+                                    <td>{{ medicine.dealer_name }}</td>
+                                    <td>{{ medicine.price }}</td>
+                                    <td>{{ medicine.stock }}</td>
+                                    <td>{{ medicine.description }}</td>
+                                    <td>
+                                        <a href="{{ medicine.get_update_url }}" class="text-white">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                        </a>
+                                        <a href="{{ medicine.get_delete_url }}" class="text-danger">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

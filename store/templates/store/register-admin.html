@@ -1,0 +1,91 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}
+MedicalStore :: Register
+{% endblock title %}
+
+{% block content %}
+    <section class="login__section">
+        {% include "store/_header.html" %}
+
+        <section class="register_body">
+            {% if form.errors %}
+              <p class="alert alert-danger">{{ form.errors }}</p>
+            {% endif %}
+            <div class="container">
+                <div class="register_card card">
+                    <p class="h3">
+                        Register As An Admin
+                    </p>
+                    <div class="register_form mt-4">
+                        <form method="POST" class="row g-3 register_form">
+                        {% csrf_token %}
+
+                            <div class="col-md-12">
+                                <label for="validationCustomUsername" class="form-label">
+                                    Username:
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                    {{ form.username }}
+                                    <div class="invalid-feedback">
+                                        Please choose a username.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="validationCustom03" class="form-label">
+                                    Password:
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="inputGroupPrepend">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </span>
+                                    {{ form.password1 }}
+                                    <br /><br /><br />
+                                    
+                                </div>
+                                <span class="text-muted">
+                                    Your password must be minimum of 8 characters.
+                                </span>
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <label for="validationCustom03" class="form-label">
+                                    Confirm Password:
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="inputGroupPrepend">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </span>
+                                    {{ form.password2 }}
+                                   
+                                </div>
+                                <span class="text-muted">
+                                    Your password must match with the first.
+                                </span>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="forgotten_password">
+                                     <p class="text-white" style="margin-top: 0% !important; padding-top: 0% !important;">
+                                    Already have an account? <a class="text-bold" href="{% url 'store:login' %}">Login</a>    
+                                </p>
+                                </div>
+                                <div class="col-12 pb-3">
+                                    <button class="btn btn-block login-button" type="submit">Register</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            </main>
+
+        </section>
+
+        <script src="assets/js/mdb.min.js"></script>
+        <script src=""></script>
+{% endblock content %}

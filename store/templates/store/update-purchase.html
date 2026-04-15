@@ -1,0 +1,85 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}
+MedicalStore :: Update Purchase
+{% endblock title %}
+
+{% block content %}
+    <section id="dashboard_section" class="dashboard_section">
+
+        <!-- Dashboard Sidebar -->
+        {% include "store/_dashboard-admin.html" %}
+
+        <div class="container-fluid">
+            <div class="add_dealer">
+                <div class="purchase__card card">
+                    <p class="h2">
+                        Update Purchase
+                    </p>
+
+                    <div class="add__dealer__form">
+                        <div class="container">
+                            <form class="row g-3 needs-validation" method="POST">
+                            {% csrf_token %}
+
+                                <div class="col-md-6">
+                                    <label for="validationCustomMedName" class="form-label">
+                                        Med Name:
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                        {{ form.med_name }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="validationCustomCustomerName" class="form-label">
+                                        Customer:
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                        {{ form.customer }}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="validationPriceNumber" class="form-label">
+                                        Price Number:
+                                    </label>
+
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="inputGroupPrepend">
+                                            <i class="fa fa-money" aria-hidden="true"></i>
+                                        </span>
+                                        {{ form.price_number }}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="validationQuantity" class="form-label">
+                                        Quantity:
+                                    </label>
+
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="inputGroupPrepend">
+                                            <i class="fa fa-balance-scale" aria-hidden="true"></i>
+                                        </span>
+                                        {{ form.quantity }}
+                                    </div>
+                                </div>
+
+                                <div class="col-12 pt-3">
+                                    <div class="col-12 pb-3">
+                                        <button class="btn btn-block login-button" type="submit">
+                                            Submit
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

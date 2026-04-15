@@ -1,0 +1,87 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}
+MedicalStore :: View Purchases
+{% endblock title %}
+
+{% block content %}
+<style>
+    div.messages {
+        margin: auto;
+        width: 60%;
+        margin-top: 30px;
+    }
+
+    p.alert {
+        font-weight: 550;
+    }
+
+    @media screen and (max-width: 785px) {
+        div.messages {
+            width: 80% !important;
+        }
+    }
+</style>
+
+<section id="dashboard_section" class="dashboard_section">
+
+    <!-- Dashboard Sidebar -->
+    {% include "store/_dashboard-customer.html" %}
+
+    <div class="container-fluid">
+        <div class="add_dealer">
+
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <p{% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}>
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                    {{ message }}
+                    </p>
+                    {% endfor %}
+            </div>
+            {% endif %}
+
+            <div class="purchase__card card">
+                <p class="h2">
+                    View Purchases
+                </p>
+
+                <div class="dealers__table table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Med Name</th>
+                                <th scope="col">Customer</th>
+                                <th scope="col">Price Number</th>
+                                <th scope="col">Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for purchase in purchases %}
+                            <tr>
+                                <th scope="row">{{ purchase.id }}</th>
+                                <td>{{ purchase.med_name }}</td>
+                                <td>{{ purchase.customer }}</td>
+                                <td>{{ purchase.price_number }}</td>
+                                <td>{{ purchase.quantity }}</td>
+                                <td>
+                                    <a href="{{ purchase.get_update_url }}" class="text-white">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i> Edit
+                                    </a>
+                                    <a href="{{ purchase.get_delete_url }}" class="text-danger">
+                                        <i class="fa fa-trash" aria-hidden="true"></i> Delete
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
